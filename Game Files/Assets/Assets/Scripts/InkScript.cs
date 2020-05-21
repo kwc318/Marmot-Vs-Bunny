@@ -1,6 +1,7 @@
 ﻿using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +18,18 @@ public class InkScript : MonoBehaviour
     {
         story = new Story(inkJSON.text);
         eraseUI();
-        refreshUI();
+        //refreshUI();
     }
 
     // Update is called once per frame
     void Update()
     {
         //refreshUI();
+        if (Input.anyKeyDown && story.canContinue)
+        {
+            refreshUI();
+            //Debug.Log("anykey");
+        }
     }
 
     void chooseStoryChoice(Choice choice)
@@ -40,7 +46,7 @@ public class InkScript : MonoBehaviour
         storyText.text = loadStoryChunk();
         storyText.transform.SetParent(this.transform, false);
 
-        Debug.Log(loadStoryChunk());
+        //Debug.Log(loadStoryChunk());
 
         foreach (Choice choice in story.currentChoices)
         {
@@ -68,7 +74,7 @@ public class InkScript : MonoBehaviour
 
         if (story.canContinue)
         {
-            text = story.ContinueMaximally();
+            text = story.Continue();
         }
 
         return text;
