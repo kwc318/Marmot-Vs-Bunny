@@ -12,13 +12,16 @@ public class InkScript : MonoBehaviour
     private Story story;
     public TextMeshProUGUI textPrefab;
     public Button buttonPrefab;
+    public Canvas mainStory;
+    public Canvas names;
+
 
     // Start is called before the first frame update
     void Start()
     {
         story = new Story(inkJSON.text);
         eraseUI();
-        //refreshUI();
+        refreshUI();
     }
 
     // Update is called once per frame
@@ -43,8 +46,27 @@ public class InkScript : MonoBehaviour
         eraseUI();
 
         TextMeshProUGUI storyText = Instantiate(textPrefab) as TextMeshProUGUI;
-        storyText.text = loadStoryChunk();
-        storyText.transform.SetParent(this.transform, false);
+
+        string text = loadStoryChunk();
+
+        List<string> tags = story.currentTags;
+
+        //if (tags.Count > 0)
+        //{
+        //    loadNames();
+        //}
+
+        foreach (string nametags in story.currentTags)
+        {
+            //Inster nametags here to be shown
+            if (nametags == "Barny" || nametags == "marnie" || nametags == "Keth")
+            {
+                loadNames();
+            }
+        }
+
+        storyText.text = text;
+        storyText.transform.SetParent(mainStory.transform, false);
 
         //Debug.Log(loadStoryChunk());
 
@@ -53,18 +75,30 @@ public class InkScript : MonoBehaviour
             Button choiceButton = Instantiate(buttonPrefab) as Button;
             TextMeshProUGUI choiceText = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
             choiceText.text = choice.text;
-            choiceButton.transform.SetParent(this.transform, false);
+            choiceButton.transform.SetParent(mainStory.transform, false);
             choiceButton.onClick.AddListener(delegate {
                 chooseStoryChoice(choice);
             });
+        }
+
+        void loadNames()
+        {
+            TextMeshProUGUI nameText = Instantiate(textPrefab) as TextMeshProUGUI;
+            nameText.text = "<b>" + tags[0] + "</b>";
+            nameText.transform.SetParent(names.transform, false);
         }
     }
 
     void eraseUI()
     {
-        for(int i = 0; i < this.transform.childCount; i++)
+        for(int i = 0; i < mainStory.transform.childCount; i++)
         {
-            Destroy(this.transform.GetChild(i).gameObject);
+            Destroy(mainStory.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < names.transform.childCount; i++)
+        {
+            Destroy(names.transform.GetChild(i).gameObject);
         }
     }
 
