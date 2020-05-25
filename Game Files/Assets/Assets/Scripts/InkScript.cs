@@ -14,6 +14,11 @@ public class InkScript : MonoBehaviour
     public Button buttonPrefab;
     public Canvas mainStory;
     public Canvas names;
+    public GameObject bunny;
+    public GameObject marmot;
+    public GameObject background;
+    public Sprite bedroom;
+    public Sprite wsp;
 
 
     // Start is called before the first frame update
@@ -58,12 +63,14 @@ public class InkScript : MonoBehaviour
 
         foreach (string nametags in story.currentTags)
         {
-            //Inster nametags here to be shown
+            //Insert nametags here to be shown
             if (nametags == "Barny" || nametags == "marnie" || nametags == "Keth")
             {
                 loadNames();
             }
         }
+
+        loadLocation();
 
         storyText.text = text;
         storyText.transform.SetParent(mainStory.transform, false);
@@ -112,5 +119,22 @@ public class InkScript : MonoBehaviour
         }
 
         return text;
+    }
+
+    void loadLocation()
+    {
+        foreach (string locationtags in story.currentTags)
+        {
+            //Insert nametags here to be shown
+            if (locationtags == "Bedroom")
+            {
+                background.GetComponent<SpriteRenderer>().sprite = bedroom;
+            }
+
+            if (locationtags == "WSP")
+            {
+                background.GetComponent<SpriteRenderer>().sprite = wsp;
+            }
+        }
     }
 }

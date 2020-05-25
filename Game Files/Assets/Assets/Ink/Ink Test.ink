@@ -1,10 +1,10 @@
 Barny's Big Day
 
-It's been a long day, and Barny's eyelids start to droop from hours of playing Design Home and solving Sudoku puzzles #bedroom 
+It's been a long day, and Barny's eyelids start to droop from hours of playing Design Home and solving Sudoku puzzles #Bedroom 
 
 I think it's sleepy time! #Barny
 
-It's a beautiful day outside!
+It's a beautiful day outside! #WSP
 
 hallo there boofies #marnie
 asdsad #Keth
