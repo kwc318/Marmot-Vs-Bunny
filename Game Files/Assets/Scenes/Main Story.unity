@@ -317,7 +317,7 @@ MonoBehaviour:
     m_Left: 30
     m_Right: 0
     m_Top: 0
-    m_Bottom: 135
+    m_Bottom: 140
   m_ChildAlignment: 6
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 219078735}
   - component: {fileID: 219078737}
   m_Layer: 0
-  m_Name: Marmot
+  m_Name: Left Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,9 +383,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1574c466c234b3846896ce33be26285e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 640ab1cbf1fc37d45aa55a01c9d353a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 30.000002, y: 30.000002}
@@ -402,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219078734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290197562}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f7ec03641f906744a8cc10d2218ee0f, type: 3}
   m_Name: 
@@ -494,9 +494,22 @@ MonoBehaviour:
     type: 3}
   mainStory: {fileID: 669647246}
   names: {fileID: 120102973}
+  rightCharacter: {fileID: 1684900951}
+  leftCharacter: {fileID: 219078734}
+  marmotDark: {fileID: 21300000, guid: ce75241f1434ff24792ebbe6cbee1229, type: 3}
+  marmotLight: {fileID: 21300000, guid: 1574c466c234b3846896ce33be26285e, type: 3}
+  bunnyDark: {fileID: 21300000, guid: 640ab1cbf1fc37d45aa55a01c9d353a4, type: 3}
+  bunnyLight: {fileID: 21300000, guid: 1cb3a67d591c8c548ba704f9d604aea3, type: 3}
   background: {fileID: 96011310}
   bedroom: {fileID: 21300000, guid: 4f4dfc3fef7ed6e4da66c856fdb15f0b, type: 3}
   wsp: {fileID: 21300000, guid: 64a024ca09afbb647aeac132cfe3a800, type: 3}
+  leftCharacterPosition: -5
+  rightCharacterPosition: 5
+  spriteActivateHeight: 1
+  spriteDeactivateHeight: 0
+  spriteZPosition: 0.5
+  leftIsActivated: 0
+  rightIsActivated: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +650,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7962e201311ec1845a5593ed924aa0fa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -775,7 +788,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 30
     m_Right: 30
-    m_Top: 340
+    m_Top: 350
     m_Bottom: 20
   m_ChildAlignment: 6
   m_Spacing: 0
@@ -862,7 +875,7 @@ GameObject:
   - component: {fileID: 1684900953}
   - component: {fileID: 1684900952}
   m_Layer: 0
-  m_Name: Bunny
+  m_Name: Right Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,9 +920,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cb3a67d591c8c548ba704f9d604aea3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce75241f1434ff24792ebbe6cbee1229, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 30.000002, y: 30.000002}

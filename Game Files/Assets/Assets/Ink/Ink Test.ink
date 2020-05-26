@@ -1,4 +1,6 @@
-Barny's Big Day
+Barny's Big Day #nospriteboth
+
+This is Barny #marnie
 
 It's been a long day, and Barny's eyelids start to droop from hours of playing Design Home and solving Sudoku puzzles #Bedroom 
 
