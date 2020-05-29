@@ -24,6 +24,8 @@ public class InkScript : MonoBehaviour
     public GameObject background;
     public Sprite bedroom;
     public Sprite wsp;
+    public Sprite dark;
+    public Sprite marjorie; 
     public float leftCharacterPosition;
     public float rightCharacterPosition;
     public float spriteActivateHeight;
@@ -31,12 +33,21 @@ public class InkScript : MonoBehaviour
     public float spriteZPosition;
     public bool leftIsActivated;
     public bool rightIsActivated;
+    public bool leftLightup;
+    public bool rightLightup;
+    public AudioSource squee;
+    public AudioSource meow;
+    public AudioSource boof;
+    public Animator whiteFade;
+
 
     // Start is called before the first frame update
     void Start()
     {
         leftIsActivated = false;
         rightIsActivated = false;
+        leftLightup = false;
+        rightLightup = false;
         story = new Story(inkJSON.text);
         eraseUI();
         refreshUI();
@@ -50,6 +61,7 @@ public class InkScript : MonoBehaviour
         {
             refreshUI();
             //Debug.Log("anykey");
+            //whiteFade.Play("Fade to White");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -82,13 +94,16 @@ public class InkScript : MonoBehaviour
         foreach (string nametags in story.currentTags)
         {
             //Insert nametags here to be shown
-            if (nametags == "Barny" || nametags == "marnie" || nametags == "Keth")
+            if (nametags == "Barny" || nametags == "marnie" || nametags == "Boofies")
             {
                 loadNames();
                 //activateCharacter();
             }
 
             activateCharacter();
+            characterlightup();
+            playSounds();
+            transitions();
 
             void activateCharacter()
             {
@@ -97,11 +112,16 @@ public class InkScript : MonoBehaviour
            
                 void activateLeft()
                 {
-                    if (nametags == "marnie")
+                    if (nametags == "activateLeft")
                     {
                         leftIsActivated = true;
                         leftCharacter.transform.position = new Vector3(leftCharacterPosition, spriteActivateHeight, spriteZPosition);
                         leftCharacter.GetComponent<SpriteRenderer>().sprite = bunnyLight;
+                    }
+
+                    if (nametags == "Barny")
+                    {
+                        leftLightup = true;
                     }
 
                     else if (nametags == "nospriteboth")
@@ -117,6 +137,7 @@ public class InkScript : MonoBehaviour
 
                     else
                     {
+                        leftLightup = false;
                         leftCharacter.transform.position = new Vector3(leftCharacterPosition, spriteDeactivateHeight, spriteZPosition);
                         leftCharacter.GetComponent<SpriteRenderer>().sprite = bunnyDark;
                     }
@@ -124,11 +145,16 @@ public class InkScript : MonoBehaviour
 
                 void activateRight()
                 {
-                    if (nametags == "Keth")
+                    if (nametags == "activateRight")
                     {
                         rightIsActivated = true;
                         rightCharacter.transform.position = new Vector3(rightCharacterPosition, spriteActivateHeight, spriteZPosition);
                         rightCharacter.GetComponent<SpriteRenderer>().sprite = marmotLight;
+                    }
+
+                    if (nametags == "Boofies" || nametags == "boof")
+                    {
+                        rightLightup = true;
                     }
 
                     else if (nametags == "nospriteboth")
@@ -145,6 +171,7 @@ public class InkScript : MonoBehaviour
 
                     else
                     {
+                        rightLightup = false;
                         rightCharacter.transform.position = new Vector3(rightCharacterPosition, spriteDeactivateHeight, spriteZPosition);
                         rightCharacter.GetComponent<SpriteRenderer>().sprite = marmotDark;
                     }
@@ -227,6 +254,64 @@ public class InkScript : MonoBehaviour
             {
                 background.GetComponent<SpriteRenderer>().sprite = wsp;
             }
+
+            if (locationtags == "dark")
+            {
+                background.GetComponent<SpriteRenderer>().sprite = dark;
+            }
+
+            if (locationtags == "marjorie")
+            {
+                background.GetComponent<SpriteRenderer>().sprite = marjorie;
+                background.transform.position = new Vector3(2, 0, 1);
+            }
+        }
+    }
+
+    void playSounds()
+    {
+        foreach (string sounds in story.currentTags)
+        {
+            if (sounds == "squee")
+            {
+                squee.Play();
+            }
+
+            if (sounds == "meow")
+            {
+                meow.Play();
+            }
+
+            if (sounds == "boof")
+            {
+                boof.Play();
+            }
+        }
+    }
+
+    void characterlightup()
+    {
+        if (leftLightup == true)
+        {
+            leftCharacter.transform.position = new Vector3(leftCharacterPosition, spriteActivateHeight, spriteZPosition);
+            leftCharacter.GetComponent<SpriteRenderer>().sprite = bunnyLight;
+        }
+
+        if (rightLightup == true)
+        {
+            rightCharacter.transform.position = new Vector3(rightCharacterPosition, spriteActivateHeight, spriteZPosition);
+            rightCharacter.GetComponent<SpriteRenderer>().sprite = marmotLight;
+        }
+    }
+
+    void transitions()
+    {
+        foreach (string transition in story.currentTags)
+        {
+            if (transition == "fadewhite")
+            {
+                whiteFade.Play("Fade to White");
+            }
         }
     }
 
@@ -234,6 +319,4 @@ public class InkScript : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName: "Main Story");
     }
-
-
 }
