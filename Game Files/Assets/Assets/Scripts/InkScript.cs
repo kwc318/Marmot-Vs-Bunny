@@ -51,6 +51,7 @@ public class InkScript : MonoBehaviour
         story = new Story(inkJSON.text);
         eraseUI();
         refreshUI();
+        whiteFade.Play("White to Clear");
     }
 
     // Update is called once per frame
@@ -311,6 +312,11 @@ public class InkScript : MonoBehaviour
             if (transition == "fadewhite")
             {
                 whiteFade.Play("Fade to White");
+            }
+
+            if (transition == "fadeclear")
+            {
+                whiteFade.Play("White to Clear");
             }
         }
     }

@@ -7,6 +7,7 @@ public class IntroVideo : MonoBehaviour
 {
     public GameObject videoplayer;
     public float stoptime;
+    public Animator fade;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +19,15 @@ public class IntroVideo : MonoBehaviour
     void Update()
     {
         stoptime -= Time.deltaTime;
-		if (stoptime <= 0)
+
+        if (stoptime <= 1)
+        {
+            fade.Play("Fade to White");
+        }
+
+        if (stoptime <= 0)
 		{
-			SceneManager.LoadScene("SampleScene");
+			SceneManager.LoadScene("Main Story");
 		}
     }
 }
